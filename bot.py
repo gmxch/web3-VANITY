@@ -4,7 +4,7 @@ import nacl.signing
 import multiprocessing
 
 # Ganti sesuai kebutuhan
-PREFIX = "GAMA"
+PREFIX = "GMXCH"
 NUM_WORKERS = multiprocessing.cpu_count()  # Gunakan semua core CPU
 
 def generate_solana_keypair():
@@ -50,7 +50,8 @@ if __name__ == "__main__":
 
     # Simpan hasil
     with open("solana_address.txt", "w") as f:
-        f.write(f"Address: {address}\n")
+    f.write(f"Address: {address}\n")
+    f.write(f"Solexplorer: https://solscan.io/account/{address}\n")
 
     with open("solana_private.txt", "w") as f:
         f.write(f"Private Key: {private_key}\n")
