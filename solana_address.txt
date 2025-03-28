@@ -1,1 +1,2 @@
-Address: GAMAdUy6dzco55RHDQB3FKfL4ppHuXpMuQtprFLETBpG
+Address: GMXCHNzQM1tLpv2SBoMaqAvbW9vpYCGfPM7gdouVU97j
+Solexplorer: https://solscan.io/account/GMXCHNzQM1tLpv2SBoMaqAvbW9vpYCGfPM7gdouVU97j
