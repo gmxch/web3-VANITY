@@ -22,7 +22,7 @@ jobs:
         run: pip install ecdsa base58
 
       - name: Run Vanity Generator
-        run: python btc_vanity.py
+        run: python BTC.py
 
       - name: Commit & Push Public Key Only
         run: |
