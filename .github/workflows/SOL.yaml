@@ -23,7 +23,7 @@ jobs:
           pip install pynacl base58
 
       - name: Run Vanity Generator
-        run: python bot.py
+        run: python SOL.py
 
       - name: Commit & Push Public Key Only
         run: |
