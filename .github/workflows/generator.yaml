@@ -34,7 +34,7 @@ jobs:
           git push
 
       - name: Save Private Key as Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: solana-private-key
           path: solana_private.txt
