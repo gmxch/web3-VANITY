@@ -4,7 +4,7 @@ import nacl.signing
 import multiprocessing
 
 # Ganti sesuai kebutuhan
-PREFIX = "GMXCH"
+PREFIX = "GMXCH"  # Prefiks yang diinginkan
 NUM_WORKERS = multiprocessing.cpu_count()  # Gunakan semua core CPU
 
 def generate_solana_keypair():
@@ -22,11 +22,10 @@ def worker(queue, stop_event):
     """Worker untuk mencari vanity address secara paralel"""
     while not stop_event.is_set():  # Hanya lanjut jika belum ada yang menemukan address
         address, private_key = generate_solana_keypair()
-        if not queue.empty():  # Jika sudah ada hasil dari worker lain, stop
-            break
-        queue.put((address, private_key))
-        stop_event.set()  # Set flag supaya worker lain berhenti
-        break
+        if queue.empty():  # Pastikan hanya satu worker yang memasukkan hasil
+            queue.put((address, private_key))
+            stop_event.set()  # Set flag supaya worker lain berhenti
+        break  # Stop worker setelah menemukan satu hasil
 
 if __name__ == "__main__":
     queue = multiprocessing.Queue()
@@ -48,13 +47,16 @@ if __name__ == "__main__":
         p.terminate()
         p.join()
 
-    # Simpan hasil
+    # Simpan Public Key ke file (solana_address.txt)
     with open("solana_address.txt", "w") as f:
-    f.write(f"Address: {address}\n")
-    f.write(f"Solexplorer: https://solscan.io/account/{address}\n")
+        f.write(f"Address: {address}\n")
+        f.write(f"Solexplorer: https://solscan.io/account/{address}\n")
 
+    # Simpan Private Key ke file (solana_private.txt)
     with open("solana_private.txt", "w") as f:
-        f.write(f"Private Key: {private_key}\n")
+        f.write(f"SOL : {address}\n")
+        f.write(f"URL : https://solscan.io/account/{address}\n")
+        f.write(f"KEY : {private_key}\n")
 
     print(f"✅ Address ditemukan: {address}")
-    print(f"🔒 Private Key tersimpan di artifact!")
+    print("🔒 Private Key tersimpan di artifact!")
