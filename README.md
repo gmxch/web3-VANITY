@@ -1,4 +1,4 @@
-WEB3 VANITY 
+# WEB3 VANITY 
 
 u can add it to ur repo
 see the result on runners-log
